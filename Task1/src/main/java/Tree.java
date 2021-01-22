@@ -15,8 +15,7 @@ public class Tree {
     public int calculateHeight(List<Node> children) {
         if(children.isEmpty()){
             if(curHeight >= height) {
-                height = curHeight + 1;
-                curHeight--;
+                height = curHeight;
                 return height;
             }
         }
@@ -32,6 +31,6 @@ public class Tree {
         if(root == null) {
             return 0;
         }
-        return calculateHeight(root.getChildren());
+        return calculateHeight(root.getChildren()) + 1;
     }
 }

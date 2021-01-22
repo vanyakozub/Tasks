@@ -29,12 +29,12 @@ public class TreeTest {
 
     @Test
     public void whenGivenRootCalculateHeight() {
-        assertEquals(4, tree.getHeight(root));
+        assertEquals(5, tree.getHeight(root));
     }
 
     @Test
     public void whenGivenNodeCalculateHeight() {
-        assertEquals(3, tree.getHeight(child11));
+        assertEquals(3, tree.getHeight(child24));
     }
 
     @Test
