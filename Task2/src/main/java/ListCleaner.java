@@ -2,32 +2,27 @@ import java.util.*;
 public class ListCleaner {
     public static void removeSame(List<Integer> list) {
         List<Integer> toRemove = new ArrayList<Integer>();
+        List<Integer> repeat = new ArrayList<Integer>();
         Iterator<Integer> it1 = list.iterator();
         while (it1.hasNext()) {
             Integer val = it1.next();
-            int amount = 0;
             Iterator<Integer> it2 = list.iterator();
             while (it2.hasNext()) {
                 Integer curValue = it2.next();
                 if(val.equals(curValue)) {
-                    amount++;
+                    repeat.add(curValue);
                 }
             }
-            if(amount >=3) {
-                Iterator<Integer> it3 = list.iterator();
-                while (it3.hasNext()) {
-                    Integer removeValue = it3.next();
-                    if(removeValue.equals(val)) {
-                        toRemove.add(removeValue);
-                    }
-                }
+            if(repeat.size() >= 3) {
+                toRemove.addAll(repeat);
             }
-            amount = 0;
+            repeat.clear();
         }
         list.removeAll(toRemove);
     }
     public static void removeSameInRow(List<Integer> list) {
         List<Integer> toRemove = new ArrayList<Integer>();
+        List<Integer> repeat = new ArrayList<Integer>();
         Iterator<Integer> it1 = list.iterator();
         while (it1.hasNext()) {
             boolean needToRemove = false;
@@ -37,6 +32,7 @@ public class ListCleaner {
             while (it2.hasNext()) {
                 Integer curValue = it2.next();
                 if(val.equals(curValue)) {
+                    repeat.add(curValue);
                     amount++;
                     if(amount >=3) {
                         needToRemove = true;
@@ -47,16 +43,9 @@ public class ListCleaner {
                 }
             }
             if(needToRemove) {
-                Iterator<Integer> it3 = list.iterator();
-                while (it3.hasNext()) {
-                    Integer removeValue = it3.next();
-                    if(removeValue.equals(val)) {
-                        toRemove.add(removeValue);
-                    }
-                }
+                toRemove.addAll(repeat);
             }
-            amount = 0;
-            needToRemove = false;
+            repeat.clear();
         }
         list.removeAll(toRemove);
     }
